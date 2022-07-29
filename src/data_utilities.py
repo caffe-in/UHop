@@ -458,21 +458,21 @@ class Parser():
         return [[step.count(i) for i in range(max(step)+1)] for step in counts]
 if __name__ == '__main__':
     #1. translate the train_data.txt to train_datap.txt
-    base_path = "..//data//ccks_wiki"
+    base_path = "..//data"
     data_path = base_path+"//train_data.txt"
     dump_path = base_path+"//train_datap.txt"
     preprae_train_data(data_path,dump_path)
 
     #2. split the train_datap.txt into hop2 and hop3
-    base_path = "..//data//ccks_wiki"
+    base_path = "..//data"
     data_path = base_path+"//train_datap.txt"
-    dump2_path = base_path+"//ccksUhop//ccks2hop//train_datap.txt"
-    dump3_path = base_path+"//ccksUhop//ccks3hop//train_datap.txt"
+    dump2_path = base_path+"//ccks2hop//train_datap.txt"
+    dump3_path = base_path+"//ccks3hop//train_datap.txt"
     split_hop23(data_path,dump2_path,dump3_path)
 
     #3. generate the medium data for hop2 and hop3, then merge them
-    base_path = "..//data//ccks_wiki//ccksUhop"
-    kb_path = "..//data//ccks_wiki//triples.txt"
+    base_path = "..//data"
+    kb_path = "..//data//triples.txt"
     data2_path = base_path+"//ccks2hop//train_datap.txt"
     data3_path = base_path+"//ccks3hop//train_datap.txt"
     dump2_dic = base_path+"//ccks2hop"
@@ -487,7 +487,7 @@ if __name__ == '__main__':
     merge_dictory(dump2_dic,dump3_dic,dumpAll_dic)
 
     #4. generate the valid_ques for hop2 and hop3, then merge them
-    base_path = "..//data//ccks_wiki//ccksUhop"
+    base_path = "..//data"
 
     valid2_path = base_path+"//ccks2hop//valid_data.txt"
     train_datap2_path = base_path+"//ccks2hop//train_datap.txt"
@@ -499,21 +499,21 @@ if __name__ == '__main__':
     dump3_path = base_path+"//ccks3hop//valid_ques.txt"
     valid_ques_gen(valid3_path,train_datap3_path,dump3_path)
 
-    dump_all_path = "..//data//ccks_wiki//valid_ques.txt"
+    dump_all_path = "..//data//valid_ques.txt"
     merge_file(dump2_path,dump3_path,dump_all_path,rela=False)
 
-    data_path = "..//data//ccks_wiki//train_ques.txt"
-    dump_path = "..//data//ccks_wiki//hop_ques.txt"
+    data_path = "..//data//train_ques.txt"
+    dump_path = "..//data//hop_ques.txt"
 
     gen_ques_classifier(data_path,dump_path)
 
     # #5. train the model and test the model ...
 
     # 6. process the socres.json in saved_model and generate the hop_ques for classifier
-    base_path = "..//saved_model//HR_BiLSTM_plus_4"
-    score_path = base_path+"//scores_82.99.json"
-    dump_path = base_path+"//scores.txt"
-    process_score(score_path,dump_path)
+    # base_path = "..//saved_model//HR_BiLSTM_plus_4"
+    # score_path = base_path+"//scores_82.99.json"
+    # dump_path = base_path+"//scores.txt"
+    # process_score(score_path,dump_path)
 
 
 
